@@ -3,10 +3,12 @@
 from pathlib import Path
 import os
 import logging
+from dotenv import load_dotenv
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv()
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 SECRET_KEY = os.getenv("SECRET_KEY") # I used .env 
