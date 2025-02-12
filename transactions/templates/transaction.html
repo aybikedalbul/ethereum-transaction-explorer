@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ethereum Transaction Explorer</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="header">
+                <h2>
+                    <span class="eth-icon">⟠</span>
+                    Ethereum Transaction Explorer
+                </h2>
+            </div>
+            <div class="search-box">
+                <form method="GET">
+                    <input type="text" id="search-input" name="address" placeholder="Enter Ethereum Address (0x...)" value="{{ address }}" required>
+                    <button type="submit">
+                        <span>Search</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            {% if transactions is not none %}
+                {% if transactions %}
+                    <div class="transactions-header">
+                        <h3>Latest Transactions</h3>
+                        <span class="transaction-count">{{ transactions|length }} transaction{% if transactions|length != 1 %}s{% endif %} found</span>
+                    </div>
+                    <div class="transactions">
+                        {% for tx in transactions %}
+                            <div class="transaction-card">
+                                <div class="transaction-detail">
+                                    <span class="label">Hash:</span>
+                                    <span class="value">{{ tx.hash }}</span>
+                                </div>
+                                <div class="transaction-detail">
+                                    <span class="label">From:</span>
+                                    <span class="value">{{ tx.from }}</span>
+                                </div>
+                                <div class="transaction-detail">
+                                    <span class="label">To:</span>
+                                    <span class="value">{{ tx.to }}</span>
+                                </div>
+                                <div class="transaction-detail">
+                                    <span class="label">Value:</span>
+                                    <span class="value">{{ tx.value }}</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="no-results">
+                        <div class="error-content">
+                            <div class="error-icon">⟠</div>
+                            <p>No transactions found for this address</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        if (window.location.search.includes("address=")) {
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
+        document.getElementById("search-input").addEventListener("focus", function() {
+            this.value = "";
+        });
+
+        particlesJS('particles-js',
+        {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#687EE3"
+                },
+                "line_linked": {
+                    "enable": true,
+                    "color": "#687EE3",
+                    "opacity": 0.4
+                },
+                "move": {
+                    "speed": 1.5
+                },
+                "size": {
+                    "value": 3
+                },
+                "opacity": {
+                    "value": 0.5
+                }
+            }
+        });
+    </script>
+</body>
+</html>
