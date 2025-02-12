@@ -2,6 +2,7 @@
 
 from pathlib import Path
 import os
+import logging
 from dotenv import load_dotenv
 
 
@@ -17,6 +18,26 @@ ETHERSCAN_API_KEY = os.getenv("ETHERSCAN_API_KEY")
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'django_errors.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}
 
 
 INSTALLED_APPS = [
