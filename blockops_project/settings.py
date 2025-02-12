@@ -19,6 +19,8 @@ ETHERSCAN_API_KEY = os.getenv("ETHERSCAN_API_KEY")
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
 
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "blockops_project.settings")
+
 
 LOGGING = {
     'version': 1,
