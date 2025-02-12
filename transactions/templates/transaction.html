@@ -1,11 +1,149 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Ethereum Transaction Explorer</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --eth-primary: #687EE3;
+            --eth-secondary: #ECF0FF;
+            --background-dark: #0A0B0D;
+            --card-bg: rgba(26, 27, 31, 0.9);
+            --text-primary: #FFFFFF;
+            --text-secondary: #9BA1A6;
+            --accent: #00FFF0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--background-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+
+        .content-wrapper {
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 24px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--eth-primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .eth-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--eth-primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .search-box {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(104, 126, 227, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        form {
+            display: flex;
+            gap: 1rem;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(104, 126, 227, 0.2);
+            border-radius: 12px;
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--eth-primary);
+            box-shadow: 0 0 0 2px rgba(104, 126, 227, 0.2);
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--eth-primary), var(--accent));
+            color: var(--background-dark);
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(104, 126, 227, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            form {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="particles-js"></div>
@@ -22,10 +160,6 @@
                     <input type="text" id="search-input" name="address" placeholder="Enter Ethereum Address (0x...)" value="{{ address }}" required>
                     <button type="submit">
                         <span>Search</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
                     </button>
                 </form>
             </div>
@@ -60,10 +194,7 @@
                     </div>
                 {% else %}
                     <div class="no-results">
-                        <div class="error-content">
-                            <div class="error-icon">⟠</div>
-                            <p>No transactions found for this address</p>
-                        </div>
+                        <p>No transactions found for this address</p>
                     </div>
                 {% endif %}
             {% endif %}
