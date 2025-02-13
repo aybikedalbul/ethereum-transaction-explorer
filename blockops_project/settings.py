@@ -16,7 +16,12 @@ INFURA_API_KEY = os.getenv("INFURA_API_KEY")
 ETHERSCAN_API_KEY = os.getenv("ETHERSCAN_API_KEY")
 
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+ALLOWED_HOSTS = [
+    "web-production-0eb0e.up.railway.app",  # Railway'in verdiği URL
+    "localhost",
+    "127.0.0.1"
+]
+
 
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "blockops_project.settings")
