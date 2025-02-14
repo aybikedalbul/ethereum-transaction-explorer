@@ -7,7 +7,7 @@ Welcome to the **Ethereum Transaction Explorer**! This web application allows us
 ## 🌟 Features
 
 - 🔍 **Transaction Lookup**: Retrieve and display the latest transactions for a given Ethereum wallet address.
-- 
+  
 - 📋 **Detailed Information**: View transaction details including hash, sender, recipient, and value.
 
 ## 🛠️ Technologies Used
