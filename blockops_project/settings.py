@@ -17,11 +17,10 @@ ETHERSCAN_API_KEY = os.getenv("ETHERSCAN_API_KEY")
 
 
 ALLOWED_HOSTS = [
-    "web-production-0eb0e.up.railway.app",  # Railway'in verdiği URL
+    "web-production-0eb0e.up.railway.app",  # Railway url
     "localhost",
     "127.0.0.1"
 ]
-
 
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "blockops_project.settings")
@@ -54,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'transactions'
 ]
 
@@ -65,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'blockops_project.urls'
@@ -139,3 +140,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")] if DEBUG else []
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CORS_ALLOWED_ORIGINS = [
+    "https://aybike.github.io",
+]
