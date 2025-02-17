@@ -19,8 +19,9 @@ ETHERSCAN_API_KEY = os.getenv("ETHERSCAN_API_KEY")
 ALLOWED_HOSTS = [
     "web-production-0eb0e.up.railway.app",  # Railway url
     "localhost",
-    "aybikedalbul.github.io"
-    "127.0.0.1"
+    "aybikedalbul.github.io",
+    "127.0.0.1",
+    "localhost",
 ]
 
 
@@ -55,7 +56,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'transactions'
+    'transactions',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
