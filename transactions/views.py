@@ -1,5 +1,7 @@
 from django.shortcuts import render
 import requests
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from django.http import JsonResponse
 from web3 import Web3
 import os
@@ -8,6 +10,9 @@ import os
 INFURA_URL = os.getenv("INFURA_API_KEY")
 ETHERSCAN_API_KEY = os.getenv("ETHERSCAN_API_KEY") 
 
+@api_view(['GET'])
+def sample_api(request):
+    return Response({"message" : "Hello from Django API!"})
 
 
 web3 = Web3(Web3.HTTPProvider(INFURA_URL)) ## In here we connect to the Ethereum network using Web3.py library.
