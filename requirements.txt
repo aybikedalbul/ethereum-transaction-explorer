@@ -11,6 +11,7 @@ ckzg==2.0.1
 cytoolz==1.0.1
 Django==5.1.6
 django-cors-headers==4.7.0
+djangorestframework==3.15.2
 eth-account==0.13.5
 eth-hash==0.7.1
 eth-keyfile==0.8.1
