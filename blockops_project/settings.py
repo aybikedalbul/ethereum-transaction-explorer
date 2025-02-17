@@ -18,6 +18,7 @@ ETHERSCAN_API_KEY = os.getenv("ETHERSCAN_API_KEY")
 
 ALLOWED_HOSTS = [
     "web-production-0eb0e.up.railway.app",  # Railway url
+    "blockops.iybishlab.42web.io",
     "localhost",
     "aybikedalbul.github.io",
     "127.0.0.1",
@@ -146,5 +147,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CORS_ALLOWED_ORIGINS = [
-    "https://aybikedalbul.github.io",
+    "https://blockops.iybishlab.42web.io",
 ]
